@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var arr = [2, 3, 2, 5, 7, 8, 9, 5, 8, 5, 2]
+    // 1.使用ES6的集合，解构，集合里的数据是唯一的
+    console.log([...new Set(arr)])
+
+    // 2.使用数组方法 Array.from(),将一个伪数组浅拷贝创建成数组
+    console.log(Array.from(new Set(arr)));
+   
+    
+    // 3. js循环去重
+    
+    function remove(array) {
+      var newArr = []
+      var flag = false
+
+      for (var i = 0; i < array.length; i++) {
+        // 遍历新数组，判断是否存在重复，有就改变标识
+        for (var j = 0; j < newArr.length; j++) {
+          if (array[i] === newArr[j]) {
+            flag = true
+            break
+          }  
+        }
+        // 没有重复的再添加
+        if (!flag) {
+          newArr[newArr.length] = array[i]
+        }
+
+      }
+
+     console.log(newArr);
+     
+     
+    }
+
+    remove(arr)
+
+  </script>
+</body>
+
+</html>

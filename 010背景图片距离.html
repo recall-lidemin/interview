@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 50px solid red;
+      padding: 50px;
+      /* 此时距边框50 border */
+      background-image: url('./冒泡排序.png');
+      background-repeat: no-repeat;
+      /* 设置图片的起始源，默认从content开始,此时距离 border+padding = 100 */
+      background-origin: content-box;
+      /* 在X轴反向移动50 此时距离 100 - 50 = 50*/
+      background-position: -50px 0;
+      
+      /* 背景图片到左侧外边框的距离：50px */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+
+  </div>
+</body>
+
+</html>

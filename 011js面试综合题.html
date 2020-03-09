@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style></style>
+</head>
+
+<body>
+
+  <script>
+    // 1.变量和函数声明的提升(函数是整体提升,变量只是声明提升)
+    // 2.变量和函数声明冲突,只保留函数
+    // 3.this指向
+    // 4.变量查找规则,沿着作用域链
+    // 5.运算符优先级,点的优先级最高,前面是括号不能直接运算,先算前面整体
+    // 6.原型链查找
+
+    function Foo() {
+      getName = function () { alert(1) }
+      return this
+    }
+    Foo.getName = function () { alert(2) }
+    Foo.prototype.getName = function () { alert(3) }
+    var getName = function () { alert(4) }
+    function getName() { alert(5) }
+
+
+
+    // 解析过程如下:
+    // function Foo() {
+    //   getName = function () { alert(1) }
+    //   return this
+    // }
+    // // var getName 函数和变量冲突了,只保留函数
+    // // function getName() { alert(5) }
+    // /******************上面是提升********************************/
+    // Foo.getName = function () { alert(2) }
+    // Foo.prototype.getName = function () { alert(3) }
+    
+    // // getName = function () { alert(4) }  //先覆盖了上面的函数声明,在调用Foo()后他也被覆盖了
+    
+    // getName = function () { alert(1) } //调用Foo()后最新的getName
+
+
+    // 写出下列输出
+    Foo.getName()  //直接找到,输出 ----> 2
+    getName()  // ----> 4
+    Foo().getName() // 点优先级最高,但是之前有括号,先算括号,调用Foo(),改变了getName,然后返回this,这个式子变为 this.getName,输出最新的getName ----> 1
+    getName() // ----> 1
+    new Foo.getName() // 点的优先级最高,先算 ----> 2  ----> new 2(用不着)
+    new Foo().getName() // 实例化对象.getName(),现在自身找getName,自身没有在原型链上找,Foo.prototype ---> 3
+    new new Foo().getName() //-----> 3 ----> new 3 (用不着)
+
+  </script>
+</body>
+
+</html>

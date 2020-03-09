@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .box{
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- rem适配 ：把html根元素的大小，设置成屏幕的宽 -->
+  <div class="box"></div>
+
+  <script>
+    
+    // 获取屏幕宽度
+    var width = document.documentElement.clientWidth
+    // 获取html
+    var html = document.querySelector('html')
+    // 设置字体大小
+    html.style.fontSize = width+'px'
+  </script>
+</body>
+</html>

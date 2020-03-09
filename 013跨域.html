@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 同源策略:浏览器的安全策略,要求协议名,域名,端口号必须完全一致
+    // 跨域:违反同源策略,就会产生跨域
+    // 解决跨域方案:
+
+    // 1.jsonp:只能处理get请求
+    // 原理:
+    // 1.1创建一个script
+    var script = document.createElement('script')
+    // 1.2设置src发送请求
+    script.src = 'http://localhost:8080?callback=getData'
+    // 1.3设置回调函数接收返回的参数
+    function getData(res) {
+      console.log(res)
+    }
+    // 1.4插入标签
+    document.appendChild(script)
+    
+    // 2.cors:没有限制
+
+    // 3.服务器代理 proxy
+  </script>
+</body>
+
+</html>

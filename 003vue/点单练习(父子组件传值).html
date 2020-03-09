@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .foods {
+            width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .item {
+            width: 300px;
+            height: 250px;
+            border: 1px solid #ccc;
+            margin: 0 20px;
+            border-radius: 3px;
+        }
+
+        .img {
+            width: 100%;
+            height: 200px;
+        }
+
+        .img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .info {
+            display: flex;
+            height: 50px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5px;
+        }
+
+        .info>span {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .count {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .count span:nth-child(2) {
+            font-size: 22px;
+            margin: 0 5px;
+        }
+
+        .count span:first-child {
+            display: block;
+            width: 30px;
+            height: 30px;
+            line-height: 25px;
+            font-size: 22px;
+            color: #000;
+            text-align: center;
+            border-radius: 50%;
+            background-color: skyblue;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .count span:last-child {
+            display: block;
+            width: 30px;
+            height: 30px;
+            line-height: 25px;
+            font-size: 22px;
+            color: #000;
+            text-align: center;
+            border-radius: 50%;
+            background-color: skyblue;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .shopcar {
+            background-image: url("http://pic.90sjimg.com/design/00/57/93/24/58facdf0a69a0.png");
+            background-size: cover;
+            position: absolute;
+            left: 100px;
+            bottom: 10px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .shopcar span {
+            /* margin-top: 10px; */
+            margin-left: 40px;
+            display: inline-block;
+            color: rgb(175, 41, 41);
+            border: 1px solid rgb(175, 41, 41);
+            min-width: 26px;
+            height: 26px;
+            text-align: center;
+            line-height: 26px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="foods">
+            <list-item :item="item" @getitem="getitem" v-for="(item,index) in list" :key="item.id"></list-item>
+        </div>
+        <!-- 购物车组件 -->
+        <shop-car :sum="sum"></shop-car>
+    </div>
+    <!-- 菜品组件模板 -->
+    <template id="item">
+        <div class="item">
+            <div class="img">
+                <img :src="item.img" alt="">
+            </div>
+            <div class="info">
+                <span class="">{{ item.title }}</span>
+                <add-cut :count="item.count" @getcount="getcount"></add-cut>
+            </div>
+        </div>
+    </template>
+    <!-- 点击组件模板 -->
+    <template id="count">
+        <div class="count">
+            <span class="cut" @click="cut" v-if="count">-</span>
+            <span class="num" v-if="count">{{ count }}</span>
+            <span class="add" @click="add">+</span>
+        </div>
+    </template>
+    <script>
+        // 菜品展示组件选购组件
+        Vue.component('list-item', {
+            template: '#item',
+            props: ['item'],
+            methods: {
+                getcount(count) {
+                    this.$emit('getitem', this.item.id, count)
+                }
+            },
+            components: {
+                "add-cut": {
+                    template: '#count',
+                    props: ['count'],
+                    methods: {
+                        add() {
+                            this.$emit('getcount', this.count + 1)
+                        },
+                        cut() {
+                            this.$emit('getcount', this.count - 1)
+                        }
+                    }
+                }
+            }
+        })
+        // 购物车组件
+        Vue.component('shop-car', {
+            template: ` <div class="shopcar">
+            <span>{{ sum }}</span>
+            </div>
+            `,
+            props: ['sum']
+        })
+        // Vue实例
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                        id: 1,
+                        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582385941145&di=c4ebf24db1509ebe93adca0c137c1938&imgtype=0&src=http%3A%2F%2Fimg.improve-yourmemory.com%2Fpic%2F72071791ca96de6e8983c1310190e0fa-2.jpg',
+                        title: '龙虾拌芥末',
+                        count: 0
+                    },
+                    {
+                        id: 2,
+                        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582385941144&di=83385bf0b2c64ccde9981467098b2d52&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2F201503%2F18%2F210259bqy79b8e7zfykqzk.jpg',
+                        title: '杭州烧麦',
+                        count: 0
+                    },
+                    {
+                        id: 3,
+                        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582385941144&di=f29fcba50a3784a7dc8fbe182825f3fb&imgtype=0&src=http%3A%2F%2Fhuafans.dbankcloud.com%2Fpic%2F2015%2F07%2F22%2F3c9982588d15d72a027ac18876113b31_10857385%2C5120%2C2880.jpg%3Fmode%3Ddownload',
+                        title: '培根煎蛋',
+                        count: 0
+                    }
+                ]
+            },
+            methods: {
+                getitem(id, count) {
+                    let item = this.list.find(item => item.id === id)
+                    item.count = count
+                }
+            },
+            computed: {
+                sum() {
+                    return this.list.reduce((acc, cur) => acc + cur.count, 0)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

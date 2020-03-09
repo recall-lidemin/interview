@@ -2,9 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab{
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        .tab .header{
+            height: 60px;
+            display: flex;
+            justify-content: flex-start;
+            position: relative;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .add{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: orange;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 5px;
+            margin: auto;
+        }
+
+        .item{
+            border: 1px solid #ccc;
+            width: 100px;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <div class="tab">
+        <div class="header">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="add">+</div>
+        </div>
+        <div class="body">
+
+        </div>
+    </div>
+    <script src="./tab.js"></script>
 </body>
 </html>
