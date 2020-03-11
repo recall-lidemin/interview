@@ -5,11 +5,11 @@
 ### 2.CSS3新特性
 
 - border-radius圆角
-- box-shadow阴影
+- box-shadow阴影:x偏移量,y偏移量,阴影大小，透明度
 - border-image边框图片
 - linear-gradient 线性渐变
-- text-shadow文字阴影
 - radial-gradient 径向渐变
+- text-shadow文字阴影
 - 2D/3D transform：rotate  scale  translate
 - @media媒体查询，根据屏幕宽度，设置
 - flex布局

@@ -1,11 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  
+  <script>
+    // 什么是闭包？
+    // 1.密闭的容器，类似于set，map容器，存储数据的
+    // 2.闭包是一个对象，存储是键值对的形式
+
+    // 闭包形成条件：函数嵌套，内部函数引用外部函数的局部变量
+    // 优点：延长外部函数局部变量的生命周期，闭包里的变量不会被释放
+    // 缺点：造成内存泄漏
+    function f1() {
+      var count = 1
+      return function () {
+        console.log(count++);
+      }
+    }
+    var f2 = f1()
+    f2() // 1
+    f2() // 2
+    f2() // 3
+
+    // 经典面试题
+    function fun(n, o) {
+      var n,o
+      console.log(o);
+      return {
+        fun: function (m) {
+          var m
+          return fun(m, n)
+        }
+      }
+    }
+    var a = fun(0) // undefined
+    // 调用过程：
+    // 此时的a是：
+    // {
+    //   fun: function (0) {
+    //     return fun(0, 0)
+    // }
+
+    a.fun(1) // 0
+    // 调用结果：
+    // 1.fun(m, n) =  a.fun(1)
+
+    // 2.{
+    //     fun: function (1) {
+    //       return fun(1, 0)
+    //   } =  a.fun(1)
+
+    a.fun(2) // 0
+    // 调用结果：
+    // 1.fun(2, 0) =  a.fun(2)
+    // 2.{
+    //     fun: function (2) {
+    //       return fun(2, 0)
+    //   } =  a.fun(2)
+    a.fun(3) // 0
+    // 调用结果：
+    // 1.fun(3, 0) =  a.fun(3)
+    // 2.{
+    //     fun: function (3) {
+    //       return fun(3, 0)
+    //   } =  a.fun(3)
+
+    var b = fun(0).fun(1).fun(2).fun(3)
+    //undefined 0 1 2
+    // fun(0)==>
+    //     {
+    //     fun: function (m) {
+    //       var m
+    //       return fun(m, n)
+    //     }
+
+    // fun(1, n) = {
+    // fun: function (1) {
+    //   var m
+    //   return fun(1, 0)
+    // }.fun(1)
+
+
+    var c = fun(0).fun(1)
+    c.fun(2)
+    c.fun(3)
+    //undefined 0 1 1
+  </script>
 </body>
+
 </html>

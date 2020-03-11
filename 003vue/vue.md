@@ -238,3 +238,13 @@ axios.interceptors.response.use(config => {
  - 每一个组件实例都是独立的
  - 组件就是一个特殊的Vue实例
  - 组件中包含了：data(方法，返回一个对象)/methods/filters/directives/computed/components/生命周期函数
+
+## 9.处理非关系型组件间传值
+
+- eventBus
+  - 导出一个公共的Vue实例，所有人都在这个实例上监听触发事件,把没有关系的组件，通过公共实例串联起来，达到传值目的
+  - 注意，$on() 应该在created中开启监听
+  - eventBus.$on(‘事件’，() => { } )，监听事件，事件被触发后，执行回调函数
+  - eventBus.$emit('事件'，...args )，触发事件
+- vuex
+
