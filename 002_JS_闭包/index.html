@@ -73,23 +73,78 @@
     var b = fun(0).fun(1).fun(2).fun(3)
     //undefined 0 1 2
     // fun(0)==>
+    //  n = 0
     //     {
     //     fun: function (m) {
     //       var m
     //       return fun(m, n)
     //     }
+   
+    // fun(1)==>
+    //  n = 1
+    //     {
+    //     fun: function (1) {
+    //       var 1
+    //       return fun(1, 0)
+    //     }
 
-    // fun(1, n) = {
-    // fun: function (1) {
-    //   var m
-    //   return fun(1, 0)
-    // }.fun(1)
+    // fun(2)==>
+    //  n = 2
+    //     {
+    //     fun: function (2) {
+    //       var 1
+    //       return fun(2, 1)
+    //     }
+
+    // fun(3)==>
+    //  n = 3
+    //     {
+    //     fun: function (3) {
+    //       var 1
+    //       return fun(3, 2)
+    //     }
+
+    // 返回的对象不是一个，所有都是不同的闭包
 
 
     var c = fun(0).fun(1)
     c.fun(2)
     c.fun(3)
     //undefined 0 1 1
+
+    // fun(0)==>
+    //  n = 0
+    //     {
+    //     fun: function (0) {
+    //       var 1
+    //       return fun(0, n)
+    //     }
+
+    // fun(1)==>
+    //  n = 1
+    //     {
+    //     fun: function (1) {
+    //       var 1
+    //       return fun(1, 0)
+    //     }
+
+    // fun(2)==>
+    //  n = 2
+    //     {
+    //     fun: function (2) {
+    //       var 2
+    //       return fun(2, 1)
+    //     }
+
+    // fun(3)==>
+    //  n = 3
+    //     {
+    //     fun: function (3) {
+    //       var 3
+    //       return fun(3, 1)
+    //     }
+  
+    // fun(2),fun(3)使用的都是同一个对象 c 所以访问的是同一个闭包
   </script>
 </body>
 
