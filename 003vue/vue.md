@@ -248,3 +248,17 @@ axios.interceptors.response.use(config => {
   - eventBus.$emit('事件'，...args )，触发事件
 - vuex
 
+## 10.Vue数据双向绑定的原理及其实现
+
+- 通过 Object.defineProperty 实现的
+
+## 11.Vue实现路由跳转
+
+- router-link
+- router.go
+- router.push
+
+## 12.Vue-router跳转和location.href的区别
+
+- vue-router是改变hash
+- location.href是页面间跳转，刷新页面

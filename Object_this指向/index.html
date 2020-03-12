@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    obj = {
+      name: 'a',
+      getName: function () {
+        console.log(this.name);
+      }
+    }
+
+    var fn = obj.getName // 把一个函数赋值给 fn 
+    obj.getName() //调用对象的方法，输出 a
+    var fn2 = obj.getName() // a ，fn2是undefined
+    fn() // 调用上面哪个函数
+    fn2() // 不是一个函数
+  </script>
+</body>
+
+</html>
