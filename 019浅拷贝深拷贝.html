@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 浅拷贝
+    (function () {
+      var obj = {
+        id: 1,
+        name: '李四',
+        msg: {
+          message: "你好"
+        },
+        data: [
+          {
+            id: 1,
+            name: "zhansan"
+          },
+          2
+        ]
+      }
+
+      var newObj = {}
+      // 1.ES6新增语法糖
+      Object.assign(newObj, obj)
+
+      console.log(newObj);
+      newObj.msg.message = '我不好'
+      console.log(obj);
+      // 2.循环
+      function copy(newObj, obj) {
+        for (var key in obj) {
+          newObj[key] = obj[key]
+        }
+      }
+      copy(newObj, obj)
+      console.log(newObj);
+      newObj.msg.message = '我不好'
+      console.log(obj);
+    })();
+
+    // 深拷贝
+    (function () {
+      var obj = {
+        id: 1,
+        name: '李四',
+        msg: {
+          message: "你好"
+        },
+        data: [
+          {
+            id: 1,
+            name: "zhansan"
+          },
+          2
+        ]
+      }
+
+      var newObj = {}
+
+      // 递归函数实现
+      function copy(newObj,obj){ 
+        for(var key in obj){
+          if(obj[key] instanceof Array){
+            newObj[key] = []
+            copy(newObj[key],obj[key])
+           
+          }else if(obj[key] instanceof Object){
+            newObj[key] = {}
+            copy(newObj[key],obj[key])
+          }else{
+            newObj[key] = obj[key]
+          }
+        }
+      }
+
+      copy(newObj,obj)
+      
+      console.log(newObj);
+      newObj.msg.message = '我不好'
+      console.log(obj);
+      
+
+    })();
+  </script>
+</body>
+
+</html>

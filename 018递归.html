@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 求阶乘 1*2*3*...*n
+    function factorial(n) {
+      if (n === 1) {
+        return 1
+      }
+      return n * factorial(n - 1)
+    }
+    console.log(factorial(4));  //24
+
+    // 求斐波那契数列 1 1 2 3 5 8 13
+    function fibonacci(n) {
+      if (n === 2 || n === 1) {
+        return 1
+      }
+      return fibonacci(n - 1) + fibonacci(n - 2)
+    }
+    console.log(fibonacci(7)); // 13
+
+    // 遍历数据 DOM树
+    var goods = [{
+      id: 1,
+      name: "冰箱",
+      children: [{
+        id: 11,
+        name: "双开门"
+      }, {
+        id: 12,
+        name: "单开门"
+      }]
+    }, {
+      id: "2",
+      name: "电视",
+      children: [{
+        id: 21,
+        name: "小米"
+      }]
+    }]
+
+    var obj = {}
+    function getGoods(data, id) {
+      
+      data.forEach(item => {
+        if (item.id === id) {
+          obj = item
+          return item
+        }
+        else if (item.children && item.children.length > 0) {
+          obj = getGoods(item.children, id)
+        }
+
+      });
+      return obj
+
+    }
+
+    console.log(getGoods(goods, 1));
+    console.log(getGoods(goods, 11));
+
+
+    var arr = [1,2,3]
+    for(var key in arr){
+      console.log(arr[key]);
+      
+    }
+
+  </script>
+</body>
+
+</html>
