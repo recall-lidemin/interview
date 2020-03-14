@@ -22,3 +22,19 @@
 - script一般放在最后，可以提高用户体验，避免因js文件过大，页面渲染等待其加载，而不渲染结构，出现空白页
 - css放在header标签中，DOM树渲染的同时，渲染样式，体验更好，效率更高
 
+### 5.HTML 的块级元素，行内元素，行内块元素有哪些?区别是什么?
+
+- 块级元素：div，h1-h6，p，ul，ol，dl，li
+  - 块元素独占一行，
+  - 宽高生效
+  - margin，padding全部生效
+  - 自动换行
+- 行内元素：em，i，del，small，strong，span，a
+  - 宽高不生效
+  - 左右margin生效上下不生效
+  - 在一行排列
+  - padding都生效
+- 行内块元素：img，input
+  - 在一行排列
+  - 宽高生效
+  - margin，padding生效
