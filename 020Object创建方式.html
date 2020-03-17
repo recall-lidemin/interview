@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 工厂模式
+    function createObj(name,age){
+      var obj = new Object()
+      obj.name = name
+      obj.age = age
+      obj.sayHi = function(){
+        console.log('hi')
+      }
+      return obj
+    }
+
+    var person = createObj('lisi',18)
+    console.log(person);
+    person.sayHi()
+
+    // 构造函数
+    function Person(name,age){
+      this.name = name
+      this.age = age
+      this.sayHi = function(){
+        console.log('hi');
+      }
+    }
+    var p = new Person('zhangsan',20)
+    console.log(p)
+
+    // 字面量
+    var person = {
+      name:'wangwu',
+      age:18
+    }
+  </script>
+</body>
+</html>
