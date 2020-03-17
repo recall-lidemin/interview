@@ -24,17 +24,18 @@
 
 ### 5.HTML 的块级元素，行内元素，行内块元素有哪些?区别是什么?
 
-- 块级元素：div，h1-h6，p，ul，ol，dl，li
-  - 块元素独占一行，
+- 块级元素：div，h1-h6，p，ul，ol，dl，li，hr，dt，dd，form，table
+  - 块元素独占一行
   - 宽高生效
+  - 默认宽和父元素一样，内容撑开高度
   - margin，padding全部生效
-  - 自动换行
-- 行内元素：em，i，del，small，strong，span，a
+- 行内元素：em，i，del，small，strong，ins，span，a
   - 宽高不生效
   - 左右margin生效上下不生效
   - 在一行排列
+  - 大小靠内容撑开
   - padding都生效
-- 行内块元素：img，input
+- 行内块元素：img，input(表单元素，除去form)
   - 在一行排列
   - 宽高生效
   - margin，padding生效
