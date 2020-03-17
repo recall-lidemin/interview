@@ -37,3 +37,8 @@
 - arguments
   - arguments有一个方法,callee()它是一个指针,指向这个arguments对象所在的函数
   - 可以用来解耦
+
+## 6.函数的属性和方法
+- 每个函数都有两个属性
+  - length:表明了函数接收的参数个数
+  - prototype
